@@ -15,10 +15,11 @@ class FileController {
       types: ['document'],
       size: '2mb'
     })
+    console.log(filesdoc);
     await filesdoc.moveAll(Helpers.tmpPath('temp'), file => ({
       name: `${file.name}-${file.user.name}-${file.user_id}`
     }))
-    if(!filesdoc.moveAll()){
+    if(!filesdoc.moveAll(err)){
       return filesdoc.errors()
     }
     await Promise.all(
