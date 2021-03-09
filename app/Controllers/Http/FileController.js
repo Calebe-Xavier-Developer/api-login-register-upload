@@ -1,6 +1,6 @@
 "use strict";
 
-const Env = use("Env");
+
 const Helpers = use("Helpers");
 const File = use("App/Models/File");
 

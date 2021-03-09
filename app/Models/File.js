@@ -1,6 +1,5 @@
 "use strict";
 
-const 
 const Env = use("Env");
 const Model = use("Model");
 
