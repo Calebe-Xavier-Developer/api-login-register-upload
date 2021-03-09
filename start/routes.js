@@ -3,6 +3,7 @@
 const Route = use("Route");
 const Helpers = use("Helpers");
 
+
 //Rota para cadastro de novos usuarios
 Route.post("/users", "UserController.create");
 
@@ -11,6 +12,8 @@ Route.post("/sessions", "SessionController.create");
 
  //Rota para envio das informações do arquivo
 Route.resource("files", "FileController").apiOnly().middleware("auth");
+
+Route.get('files/:path', 'FileController.show');
 
 
 /*Route.post("upload", async ({ request }) => {
