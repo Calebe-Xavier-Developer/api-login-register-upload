@@ -1,21 +1,27 @@
-'use strict'
+"use strict";
 
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| Http routes are entry points to your web application. You can create
-| routes for different URLs and bind Controller actions to them.
-|
-| A complete guide on routing is available here.
-| http://adonisjs.com/docs/4.1/routing
-|
-*/
+const Route = use("Route");
+const Helpers = use("Helpers");
 
-/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
+//Rota para cadastro de novos usuarios
+Route.post("/users", "UserController.create");
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+//Rota para autenticar o login do usuario
+Route.post("/sessions", "SessionController.create");
+
+ //Rota para envio das informações do arquivo
+Route.resource("files", "FileController").apiOnly().middleware("auth");
+
+
+/*Route.post("upload", async ({ request }) => {
+  const filesdoc = request.file("docs_input", {
+    types: ['files'],
+    size: "2mb",
+  });
+  await filesdoc.moveAll(Helpers.tmpPath('temp'), file => ({
+    name: `${file.name}-${Date.now()}-${file.user.name}-${file.user_id}`,
+  }));
+  if (!filesdoc.moveAll()) {
+    return filesdoc.errors();
+  } return 'File moved'
+});*/
